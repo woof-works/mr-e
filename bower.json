@@ -21,7 +21,8 @@
     "angular": "^1.5.9",
     "oclazyload": "^1.0.9",
     "angular-sanitize": "^1.5.9",
-    "angular-ui-router": "ui-router#^0.3.2"
+    "angular-ui-router": "ui-router#^0.3.2",
+    "components-font-awesome": "^4.7.0"
   },
   "overrides": {
     "bootstrap": {
