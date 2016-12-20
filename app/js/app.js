@@ -1,6 +1,6 @@
 'use script';
 
-var app = angular.module('app', ['controllers', 'ui.router', 'oc.lazyLoad', ]);
+var app = angular.module('app', ['ui.router', 'oc.lazyLoad', ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
 
@@ -14,7 +14,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', funct
   $stateProvider
     .state('mr', {
       url: '/',
-      templateUrl: 'app/views/list.html',
+      templateUrl: 'app/views/main.html',
       resolve: {
         loadMyDirectives: function ($ocLazyLoad) {
           return $ocLazyLoad.load({
@@ -26,30 +26,36 @@ app.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', funct
             $ocLazyLoad.load({
               name: 'ngSanitize',
               files: ['bower_components/angular-sanitize/angular-sanitize.js']
-            })
+            });
         }
       }
     })
     .state('mr.home', {
-      url: 'home',
+      url: 'home',  
       controller: 'ListController',
       templateUrl: 'app/views/list.html',
       resolve: {
         loadMyFiles: function ($ocLazyLoad) {
           return $ocLazyLoad.load({
-            name: 'sbAdminApp',
             files: [
               'app/scripts/controllers/list.js'
             ]
           });
         }
       }
+    }).state('mr.new', {
+      url: 'new',
+      controller: 'NewController',
+      // templateUrl: 'app/views/new.html',
+      template: '<h1>test</h1>',
+      resolve: {
+        loadMyFiles: function ($ocLazyLoad) {
+          return $ocLazyLoad.load({
+            files: [
+              'app/scripts/controllers/new.js'
+            ]
+          });
+        }
+      }
     });
-}]);
-
-
-var controllers = angular.module('controllers', []);
-
-controllers.controller('ListController', ['$scope', function ($scope, $http) {
-
 }]);
